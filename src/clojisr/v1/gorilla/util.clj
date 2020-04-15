@@ -4,7 +4,7 @@
    [clojure.string :as str]
    [clojure.walk :refer [prewalk]]
    [pl.danieljanus.tagsoup :as ts]
-   [com.rpl.specter :refer [transform ALL]]))
+   [com.rpl.specter :refer [transform]]))
 
 ;; Hiccup accepts Style as string, but Reagent does not.
 ;; Example: [:rect {:width "100%", :height "100%", :style "stroke: none; fill: #FFFFFF;"}]  

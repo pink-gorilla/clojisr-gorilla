@@ -20,7 +20,7 @@
 
   :dependencies [[org.clojure/clojure "1.10.1"]
                  
-                 [scicloj/clojisr "1.0.0-BETA11-SNAPSHOT"]
+                 [scicloj/clojisr "1.0.0-BETA10"]
                  
                  ;; pinkgorilla-vizualisation
                  [org.pinkgorilla/gorilla-renderable "3.0.5"] ; to implement pink-gorilla renderer

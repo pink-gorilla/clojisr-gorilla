@@ -17,13 +17,12 @@
                   ["vcs" "commit" "Begin %s"]
                   ["vcs" "push"]]
 
-
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 
+                 ; ClojisR                 
                  [scicloj/clojisr "1.0.0-BETA10"]
                  
                  ;; pinkgorilla-vizualisation
-                 [org.pinkgorilla/gorilla-renderable "3.0.5"] ; to implement pink-gorilla renderer
+                 [org.pinkgorilla/gorilla-renderable "3.0.7"] ; to implement pink-gorilla renderer
                  [com.rpl/specter "1.1.3"] ; clojisr.util, svg width/height injection
                  [org.clojure/data.xml "0.0.8"] ; make sure old version from tagsoup is not used
                  [clj-tagsoup/clj-tagsoup "0.3.0" ; to parse xml from the svg

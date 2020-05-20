@@ -1,4 +1,4 @@
-(defproject org.pinkgorilla/clojisr-gorilla "0.0.1-SNAPSHOT"
+(defproject org.pinkgorilla/clojisr-gorilla "0.0.2-SNAPSHOT"
   :description "Clojure<->R interop"
   :license {:name "MIT"}
   :deploy-repositories [["releases" {:url "https://clojars.org/repo"

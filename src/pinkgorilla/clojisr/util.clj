@@ -1,5 +1,5 @@
 
-(ns clojisr.v1.gorilla.util
+(ns pinkgorilla.clojisr.util
   (:require
    [clojure.string :as str]
    [clojure.walk :refer [prewalk]]

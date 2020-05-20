@@ -17,9 +17,13 @@
                   ["vcs" "commit" "Begin %s"]
                   ["vcs" "push"]]
 
+   :managed-dependencies [
+                          [com.taoensso/encore "2.119.0"]
+   ]
+  
   :dependencies [[org.clojure/clojure "1.10.1"]
                  ; ClojisR                 
-                 [scicloj/clojisr "1.0.0-BETA10"]
+                 [scicloj/clojisr "1.0.0-BETA11"]
                  
                  ;; pinkgorilla-vizualisation
                  [org.pinkgorilla/gorilla-renderable "3.0.7"] ; to implement pink-gorilla renderer
@@ -35,12 +39,16 @@
   :source-paths ["src"]
   :resource-paths ["resources"]
   ;:repl-options {:init-ns ta.model.single}
+  
+   :pinkgorilla {:runtime-config "./profiles/notebook/config.edn"}
+  
+  
   :profiles {:demo {; run the pink-gorilla notebook (standalone, or in repl)
                        ; important to keep this dependency in here only, as we do not want to
                        ; bundle the notebook (big bundle) into clojisr library 
                     :source-paths ["profiles/notebook/src"]
                     :main notebook.main ; ^:skip-aot 
-                    :dependencies [[org.pinkgorilla/gorilla-notebook "0.4.12"]]
+                    :dependencies [[org.pinkgorilla/gorilla-notebook "0.4.18-SNAPSHOT"]]
                     :repl-options {:welcome (println "Profile: gorilla")
                                    :init-ns notebook.main  ;; Specify the ns to start the REPL in (overrides :main in this case only)
                                    :init (start) ;; This expression will run when first opening a REPL, in the namespace from :init-ns or :main if specified.
@@ -62,7 +70,8 @@
                                        try-if-let          [[:block 1]]}}}}
 
   :plugins [[lein-ancient "0.6.15"]
-            [min-java-version "0.1.0"]]
+            [min-java-version "0.1.0"]
+            [org.pinkgorilla/lein-pinkgorilla "0.0.13"]]
 
   :aliases {"bump-version"
             ["change" "version" "leiningen.release/bump-version"]

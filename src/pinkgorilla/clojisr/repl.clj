@@ -19,6 +19,10 @@
   ;(r.grDevices/dev-off)`
   (r "dev.off('pdf')"))
 
+
+; https://r-lib.github.io/svglite/articles/fonts.html
+
+
 (defn ->svg
   "calls a plotting-function and renders the output as svg in gorilla-notebook"
   ([plotting-function-or-object]

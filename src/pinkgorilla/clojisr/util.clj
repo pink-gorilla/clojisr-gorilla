@@ -66,9 +66,10 @@
 (defn inject-dimensions [w h hiccup-svg]
   (transform [1] #(assoc % :style {:width w :height h}) hiccup-svg))
 
-(defn fix-svg [svg w h]
+(defn fix-svg [svg _ _] ; w h
   (->> svg
        (ts/parse-string)
        (convert-style-as-strings-to-map)
        (fix-case-tags)
-       (inject-dimensions w h)))
+       ;(inject-dimensions w h)
+       ))

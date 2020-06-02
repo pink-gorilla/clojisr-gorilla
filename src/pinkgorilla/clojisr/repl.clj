@@ -12,10 +12,10 @@
 
 (defn pdf-off
   "By default R plots are also being rendered to PDF files.
-    To disable this behavior, call no-pdf."
+  To disable this behavior, call pdf-off."
   []
   (require-r '[grDevices])
-  (require-r '[grDevices])
+  ;(require-r '[grDevices])
   ;(r.grDevices/dev-off)`
   (r "dev.off('pdf')"))
 
@@ -26,14 +26,14 @@
   ([wrapper-params plotting-function-or-object] ; & svg-params
    (let [tempfile (File/createTempFile "clojisr_notebook_plot" ".svg")
          path     (.getAbsolutePath tempfile)
-         wrapper-params (merge {:width 400 :height 400} wrapper-params)
+         wrapper-params (merge {:width 5 :height 5} wrapper-params)
          {:keys [width height]} wrapper-params
         ; R device params:
         ; https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/cairo.html
         ; svg dimensions are in inches
-         dpi 96
-         svg-options (merge wrapper-params {:height (/ (:height wrapper-params) dpi)
-                                            :width (/ (:width wrapper-params) dpi)})
+         ;dpi 96
+         svg-options (merge wrapper-params {:height (:height wrapper-params) ;(/  dpi)
+                                            :width (:width wrapper-params)}) ; (/  dpi)
          svg-params (into [] (interleave (keys svg-options) (vals svg-options)))]
      (apply plot->file path plotting-function-or-object svg-params)
      (let [result (slurp path)]

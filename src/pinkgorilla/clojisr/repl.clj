@@ -21,15 +21,25 @@
 
 (defn ->svg
   "calls a plotting-function and renders the output as svg in gorilla-notebook"
-  [wrapper-params plotting-function-or-object & svg-params]
-  (let [tempfile (File/createTempFile "clojisr_notebook_plot" ".svg")
-        path     (.getAbsolutePath tempfile)
-        {:keys [width height]} wrapper-params]
-    (apply plot->file path plotting-function-or-object svg-params)
-    (let [result (slurp path)]
-      (.delete tempfile)
-      ;^:R [:p/html (fix-svg result 300 200)]
-      ^:R [:div.clojsrplot (fix-svg result width height)])))
+  ([plotting-function-or-object]
+   (->svg {} plotting-function-or-object))
+  ([wrapper-params plotting-function-or-object] ; & svg-params
+   (let [tempfile (File/createTempFile "clojisr_notebook_plot" ".svg")
+         path     (.getAbsolutePath tempfile)
+         wrapper-params (merge {:width 400 :height 400} wrapper-params)
+         {:keys [width height]} wrapper-params
+        ; R device params:
+        ; https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/cairo.html
+        ; svg dimensions are in inches
+         dpi 96
+         svg-options (merge wrapper-params {:height (/ (:height wrapper-params) dpi)
+                                            :width (/ (:width wrapper-params) dpi)})
+         svg-params (into [] (interleave (keys svg-options) (vals svg-options)))]
+     (apply plot->file path plotting-function-or-object svg-params)
+     (let [result (slurp path)]
+       (.delete tempfile)
+       ^:R [:div.clojsrplot
+            (fix-svg result width height)]))))
 
 ; help returns just file path
 ; and prints the content to the stdout

@@ -1,10 +1,10 @@
-(ns pinkgorila.clojisr.demo
+(ns pinkgorilla.clojisr.demo
   (:require
-   [tech.ml.dataset :as dataset]
-   [clojisr.v1.r :as r :refer [r r->clj clj->r r+ colon bra bra<- rdiv r** r- r* ->code]]
+   ;[tech.ml.dataset :as dataset]
+   ;[clojisr.v1.r :as r :refer [r r->clj clj->r r+ colon bra bra<- rdiv r** r- r* ->code]]
    [clojisr.v1.require :refer [require-r]]
-   [clojisr.v1.applications.plotting :refer [plot->svg plot->file plot->buffered-image]]
-   [pinkgorilla.clojisr.repl :refer [->svg r-doc pdf-off]]))
+   [clojisr.v1.applications.plotting :refer [plot->svg #_plot->file ]]
+   [pinkgorilla.clojisr.repl :refer [->svg  pdf-off]]))
 
 (println "configuring clojisr ..")
 (require-r '[base :as base :refer [$ <- $<-]]
